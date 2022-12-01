@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div  class="container">
+  <div class="card">
+<form method="POST" style="text-align: center">
+    <div class="card-header">
+    <h1>Добавить клиента</h1>
+    </div>
+    {% for field in form %}
+  <div class="content-inside">
+      {% if field.widget.input_type != 'hidden'  %}
+      {{ field.label }}
+      {% endif %}
+      {{ field(class='form-control') }}
+      {% if field.errors %}
+         {% for error in field.errors %}
+      <div class="invalid-feedback" style="display: block;">
+                 {{ error }}
+      </div>
+         {% endfor %}
+      {% endif %}
+  </div>
+    {% endfor %}
+      <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+  </div>
+</div>
+{% endblock content %}
